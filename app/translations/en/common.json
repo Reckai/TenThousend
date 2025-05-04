@@ -1,0 +1,33 @@
+{
+  "auth": {
+    "signUp": {
+      "title": "Registration",
+      "subtitle": "Create new account",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "submitButton": "Sign Up",
+      "validation": {
+        "nameRequired": "Name is required",
+        "invalidEmail": "Invalid Email",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordMaxLength": "Password must not exceed 64 characters",
+        "passwordUppercase": "Password must include at least one uppercase letter",
+        "passwordLowercase": "Password must include at least one lowercase letter",
+        "passwordNumber": "Password must include at least one number",
+        "passwordSpecial": "Password must include at least one special character"
+      }
+    },
+    "signIn": {
+      "title": "Login",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "submitButton": "Sign In",
+      "validation": {
+        "invalidEmail": "Invalid Email",
+        "passwordRequired": "Password is required"
+      }
+    }
+  }
+}
