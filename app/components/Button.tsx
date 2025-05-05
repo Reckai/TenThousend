@@ -13,6 +13,7 @@ type ButtonProps = TouchableOpacityProps & {
   backgroundColor?: string;
   onPress: () => void;
   style?: ViewStyle;
+  accessibilityLabel?: string;
 };
 
 const Button: FC<ButtonProps> = ({
@@ -20,6 +21,7 @@ const Button: FC<ButtonProps> = ({
   backgroundColor,
   onPress,
   style,
+  accessibilityLabel,
   ...rest
 }) => {
   const textColor = backgroundColor ? Colors.white : Colors.orange;
@@ -30,6 +32,11 @@ const Button: FC<ButtonProps> = ({
       {...rest}
       onPress={onPress}
       style={[styles.button, { backgroundColor: buttonBackgroundColor }, style]}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel || title}
+      accessibilityState={{ disabled: rest.disabled }}
+      importantForAccessibility="yes"
     >
       <Text style={[styles.text, { color: textColor }]}>{title}</Text>
     </TouchableOpacity>

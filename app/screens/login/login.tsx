@@ -1,27 +1,24 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
-import Button from "../../components/Button";
+import { BackButton } from "@/app/components/BackButton";
+import { useTranslation } from "react-i18next";
 import { Colors } from "../../utils/colors";
 import { CommonStyles } from "../../utils/styles";
+import SignInForm from "./SignInForm/SignInForm";
 
 const Login: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton />
       <View style={[styles.content, CommonStyles.mainContainer]}>
-        <Text style={styles.title}>Вход в аккаунт</Text>
-        <Text style={styles.subtitle}>Введите свои данные для входа</Text>
-
-        {/* Здесь будет форма входа */}
+        <Text style={styles.title}>{t("auth.signIn.title")}</Text>
+        <Text style={styles.subtitle}>{t("auth.signIn.subtitle")}</Text>
         <View style={styles.form}>
-          <Text>Форма входа</Text>
+          <SignInForm />
         </View>
-
-        <Button
-          title="Войти"
-          onPress={() => {}}
-          backgroundColor={Colors.orange}
-        />
       </View>
     </SafeAreaView>
   );
@@ -32,6 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.white,
   },
+
   content: {
     flex: 1,
     marginTop: 50,
@@ -50,6 +48,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginBottom: 30,
+    flex: 1,
   },
 });
 

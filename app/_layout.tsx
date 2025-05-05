@@ -1,20 +1,23 @@
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { SafeAreaView } from "react-native";
-import "react-native-gesture-handler";
-import "./translations/i18n";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { Provider } from "./providers/provider";
 
 export default function RootLayout() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar style="auto" />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: "white" },
-        }}
-      ></Stack>
-    </SafeAreaView>
+    <Provider>
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="dark-content" />
+        <Stack />
+      </SafeAreaView>
+    </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    marginTop: StatusBar.currentHeight,
+  },
+});

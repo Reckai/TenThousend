@@ -67,6 +67,8 @@ const SlideUpModal: React.FC<SlideUpModalProps> = ({
       animationType="fade"
       visible={visible}
       onRequestClose={closeModal}
+      accessible={true}
+      accessibilityViewIsModal={true}
     >
       <KeyboardAvoidingView
         style={styles.keyboardView}
@@ -76,6 +78,10 @@ const SlideUpModal: React.FC<SlideUpModalProps> = ({
           style={styles.modalOverlay}
           activeOpacity={1}
           onPressOut={closeModal}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel="Close modal"
+          accessibilityHint="Closes the modal window"
         >
           <TouchableWithoutFeedback>
             <Animated.View
@@ -86,9 +92,15 @@ const SlideUpModal: React.FC<SlideUpModalProps> = ({
                   transform: [{ translateY: slideAnim }],
                 },
               ]}
+              accessible={true}
+              accessibilityRole="none"
+              importantForAccessibility="yes"
+              accessibilityLiveRegion="polite"
             >
               <TouchableWithoutFeedback onPress={dismissKeyboard}>
-                <View style={styles.modalInner}>{children}</View>
+                <View style={styles.modalInner} importantForAccessibility="yes">
+                  {children}
+                </View>
               </TouchableWithoutFeedback>
             </Animated.View>
           </TouchableWithoutFeedback>

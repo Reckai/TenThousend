@@ -2,15 +2,16 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
+import { BackButton } from "../../components/BackButton";
 import { Colors } from "../../utils/colors";
 import { CommonStyles } from "../../utils/styles";
 import SignUpForm from "./signUpForm/SignUpForm";
-
 const Register: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <SafeAreaView style={styles.container}>
+      <BackButton />
       <View style={[styles.content, CommonStyles.mainContainer]}>
         <Text style={styles.title}>{t("auth.signUp.title")}</Text>
         <Text style={styles.subtitle}>{t("auth.signUp.subtitle")}</Text>

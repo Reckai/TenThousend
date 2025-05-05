@@ -21,11 +21,11 @@
     "signIn": {
       "title": "Login",
       "subtitle": "Sign in to your account",
-      "email": "Email",
+      "name": "Name",
       "password": "Password",
       "submitButton": "Sign In",
       "validation": {
-        "invalidEmail": "Invalid Email",
+        "nameRequired": "Name is required",
         "passwordRequired": "Password is required"
       }
     }
