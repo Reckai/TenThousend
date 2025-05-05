@@ -18,7 +18,7 @@ const Loader: React.FC<LoaderProps> = ({ size = 40 }) => {
         duration: 1000,
         easing: Easing.linear,
         useNativeDriver: true,
-      })
+      }),
     );
 
     const pulseAnimation = Animated.loop(
@@ -35,7 +35,7 @@ const Loader: React.FC<LoaderProps> = ({ size = 40 }) => {
           easing: Easing.inOut(Easing.ease),
           useNativeDriver: true,
         }),
-      ])
+      ]),
     );
 
     // Start both animations

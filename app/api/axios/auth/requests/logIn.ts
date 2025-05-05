@@ -1,6 +1,6 @@
-import type { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig } from "axios";
 
-import { authApi } from '../instanse';
+import { authApi } from "../instanse";
 
 export interface LoginCredentials {
   username: string;
@@ -20,17 +20,20 @@ export interface LoginResponse {
   refreshToken: string;
 }
 
-export const logIn = async (credentials: LoginCredentials, config?: AxiosRequestConfig) => {
-try {
-  const response = await authApi.post<LoginResponse>('/login', credentials, {
-    ...config,
-    headers: {
-      'Content-Type': 'application/json',
-      ...config?.headers,
-    },
-  });
-  return response.data;
-
-} catch (error) {
-  throw new Error('Failed to log in', { cause: error });
-}};
+export const logIn = async (
+  credentials: LoginCredentials,
+  config?: AxiosRequestConfig,
+) => {
+  try {
+    const response = await authApi.post<LoginResponse>("/login", credentials, {
+      ...config,
+      headers: {
+        "Content-Type": "application/json",
+        ...config?.headers,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to log in", { cause: error });
+  }
+};

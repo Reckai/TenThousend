@@ -3,19 +3,19 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
-
- 
+import authReducer from "./slices/auth.slice";
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
-  whitelist: ['auth'],
-  blacklist: ['verify'],
+  whitelist: ["auth"],
+  blacklist: ["verify"],
 };
 
 const rootReducer = persistReducer(
   persistConfig,
   combineReducers({
-    // auth: authReducer,
+    auth: authReducer,
+
     // verify: verifyReducer,
   }),
 );
