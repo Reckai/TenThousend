@@ -3,6 +3,7 @@ const Routes = {
   Login: "Login",
   Register: "Register",
   Home: "Home",
+  PinCode: "PinCode",
   Profile: "Profile",
 };
 

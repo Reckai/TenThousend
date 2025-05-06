@@ -30,15 +30,19 @@
       }
     },
     "pinCode": {
-      "title": "Enter your PIN",
-      "subtitle": "Enter your 4-digit PIN",
+      "subtitle": "Enter your 5-digit PIN",
       "error": {
         "incorrect": "Incorrect PIN",
         "pinDidNotMatch": "PINs did not match"
       },
+      "create": {
+        "title": "Create PIN"
+      },
+      "confirm": {
+        "title": "Repeat PIN"
+      },
       "verify": {
-        "title": "Verify PIN",
-        "subtitle": "Enter your PIN to verify your account",
+        "title": "Enter your PIN",
         "biometrics": {
           "title": "Confirm your identity"
         }

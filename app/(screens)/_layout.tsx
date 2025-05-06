@@ -16,7 +16,7 @@ export default function HomeLayout() {
     >
       <StatusBar barStyle="dark-content" />
 
-      <Stack.Screen name="logis" />
+      <Stack.Screen name="PinCode" />
     </Stack>
   );
 }

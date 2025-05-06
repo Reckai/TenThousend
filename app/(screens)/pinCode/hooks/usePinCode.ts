@@ -95,7 +95,7 @@ export const usePinCode = (): PinCodeHookResult => {
       });
 
       if (existedPin && existedPin.password === pinCode) {
-        // Implement dispatch logic here
+        dispatch(verify());
         console.log("PIN verified successfully");
       } else {
         Alert.alert(t("pinCode.error.incorrect"));
@@ -106,7 +106,7 @@ export const usePinCode = (): PinCodeHookResult => {
       Alert.alert(t("pinCode.error.verificationFailed"));
       setPinCode("");
     }
-  }, [pinCode, t]);
+  }, [pinCode, t, dispatch]);
 
   const handleCreate = useCallback(() => {
     setSecondPinCode(pinCode);
@@ -121,7 +121,7 @@ export const usePinCode = (): PinCodeHookResult => {
           service: PIN_CODE_SERVICE,
         });
 
-        // Add dispatch logic here
+        dispatch(verify());
         console.log("PIN created successfully");
         resetPinCode(STEPS.VERIFY);
       } else {
@@ -133,7 +133,7 @@ export const usePinCode = (): PinCodeHookResult => {
       Alert.alert(t("pinCode.error.savingFailed"));
       setPinCode("");
     }
-  }, [pinCode, secondPinCode, resetPinCode, t]);
+  }, [pinCode, secondPinCode, resetPinCode, t, dispatch]);
 
   const handleDigitPress = useCallback(
     (digit: string) => {

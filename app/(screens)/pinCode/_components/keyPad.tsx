@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 interface KeypadProps {
-  onDigitPress: (digit: number) => void;
+  onDigitPress: (digit: string) => void;
   onBackspacePress: () => void;
   buttonSize?: number;
   gap?: number;
@@ -15,7 +15,7 @@ const Keypad: React.FC<KeypadProps> = ({
   buttonSize = 65,
   gap = 15,
 }) => {
-  const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const keypadWidth = buttonSize * 3 + gap * 2;
 
   return (
@@ -53,7 +53,7 @@ const Keypad: React.FC<KeypadProps> = ({
             borderRadius: buttonSize / 2,
           },
         ]}
-        onPress={() => onDigitPress(0)}
+        onPress={() => onDigitPress("0")}
         accessibilityLabel="Цифра 0"
         activeOpacity={0.7}
       >

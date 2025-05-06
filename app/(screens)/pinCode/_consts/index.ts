@@ -1,4 +1,4 @@
-export const PIN_CODE_LENGTH = 4;
+export const PIN_CODE_LENGTH = 5;
 export const STEPS = {
   VERIFY: "verify",
   CREATE: "create",
