@@ -1,9 +1,9 @@
 import { verify } from "@/app/redux/slices/verify.slice";
-import * as SecureStore from 'expo-secure-store';
-import { useCallback, useEffect, useMemo, useState } from "react";
+import * as LocalAuthentication from "expo-local-authentication";
+import * as SecureStore from "expo-secure-store";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert } from "react-native";
-import ReactNativeBiometrics from "react-native-biometrics";
 import { useDispatch } from "react-redux";
 import { PIN_CODE_LENGTH, PIN_CODE_SERVICE, STEPS } from "../_consts";
 import { StepType } from "../_types";
@@ -16,6 +16,7 @@ interface PinCodeActions {
   handleDigitPress: (digit: string) => void;
   handleBackspacePress: () => void;
   handleSubmit: () => Promise<void>;
+  cancelAuthentication: () => void;
 }
 
 interface PinCodeLocalization {
@@ -34,26 +35,61 @@ export const usePinCode = (): PinCodeHookResult => {
   const [secondPinCode, setSecondPinCode] = useState<string>("");
   const [step, setStep] = useState<StepType>(STEPS.VERIFY);
   const { t } = useTranslation();
-  const rnBiometrics = useMemo(
-    () =>
-      new ReactNativeBiometrics({
-        allowDeviceCredentials: true,
-      }),
-    [],
-  );
 
   useEffect(() => {
     const verifyPin = async () => {
       if (step === STEPS.VERIFY) {
         try {
-          const { success } = await rnBiometrics.simplePrompt({
-            promptMessage: t("pinCode.verify.biometrics.title"),
-          });
+          const hasHardware = await LocalAuthentication.hasHardwareAsync();
+          const isEnrolled = await LocalAuthentication.isEnrolledAsync();
 
-          if (success) {
-            // Implement dispatch logic here instead of throwing error
-            dispatch(verify());
-            console.log("Biometric verification successful");
+          if (hasHardware && isEnrolled) {
+            const supportedTypes =
+              await LocalAuthentication.supportedAuthenticationTypesAsync();
+            const hasFaceId = supportedTypes.includes(
+              LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION,
+            );
+            const hasFingerprint = supportedTypes.includes(
+              LocalAuthentication.AuthenticationType.FINGERPRINT,
+            );
+
+            let promptMessage = t("pinCode.verify.biometrics.title");
+            if (hasFaceId && !hasFingerprint) {
+              promptMessage =
+                t("pinCode.verify.biometrics.faceId.title") ||
+                "Authenticate with Face ID";
+            } else if (hasFingerprint && !hasFaceId) {
+              promptMessage =
+                t("pinCode.verify.biometrics.touchId.title") ||
+                "Authenticate with Touch ID/Fingerprint";
+            }
+
+            const result = await LocalAuthentication.authenticateAsync({
+              promptMessage,
+              disableDeviceFallback: false,
+              fallbackLabel:
+                t("pinCode.verify.biometrics.fallback") || "Use PIN",
+            });
+
+            if (result.success) {
+              dispatch(verify());
+              console.log(result);
+              console.log("Biometric verification successful");
+            } else if (
+              result.error === "user_cancel" ||
+              result.error === "system_cancel"
+            ) {
+              console.log("Authentication cancelled");
+            } else if (result.error === "lockout") {
+              Alert.alert(
+                t("pinCode.error.tooManyAttempts") ||
+                  "Too many failed attempts",
+              );
+            }
+          } else {
+            console.log(
+              "Biometrics not available or not enrolled, falling back to PIN verification",
+            );
           }
         } catch (error) {
           console.error("Biometric verification failed:", error);
@@ -77,7 +113,7 @@ export const usePinCode = (): PinCodeHookResult => {
     };
 
     checkExistingPin();
-  }, [rnBiometrics, t]);
+  }, [t, dispatch, step]);
 
   const resetPinCode = useCallback((newStep: StepType) => {
     setPinCode("");
@@ -141,6 +177,10 @@ export const usePinCode = (): PinCodeHookResult => {
     setPinCode((prev) => prev.slice(0, -1));
   }, []);
 
+  const cancelAuthentication = useCallback(() => {
+    LocalAuthentication.cancelAuthenticate();
+  }, []);
+
   const handleSubmit = useCallback(async () => {
     try {
       if (step === STEPS.VERIFY) {
@@ -161,6 +201,7 @@ export const usePinCode = (): PinCodeHookResult => {
       handleDigitPress,
       handleBackspacePress,
       handleSubmit,
+      cancelAuthentication,
     },
     localization: { t },
   };

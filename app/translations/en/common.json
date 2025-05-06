@@ -34,7 +34,10 @@
       "subtitle": "Enter your 5-digit PIN",
       "error": {
         "incorrect": "Incorrect PIN",
-        "pinDidNotMatch": "PINs did not match"
+        "pinDidNotMatch": "PINs did not match",
+        "tooManyAttempts": "Too many failed attempts",
+        "verificationFailed": "Verification failed",
+        "savingFailed": "Saving failed"
       },
       "create": {
         "title": "Create PIN"
@@ -42,10 +45,18 @@
       "confirm": {
         "title": "Repeat PIN"
       },
+
       "verify": {
         "title": "Enter your PIN",
         "biometrics": {
-          "title": "Confirm your identity"
+          "title": "Confirm your identity",
+          "faceId": {
+            "title": "Authenticate with Face ID"
+          },
+          "touchId": {
+            "title": "Authenticate with Touch ID/Fingerprint"
+          },
+          "fallback": "Use PIN"
         }
       }
     }
