@@ -28,6 +28,21 @@
         "nameRequired": "Name is required",
         "passwordRequired": "Password is required"
       }
+    },
+    "pinCode": {
+      "title": "Enter your PIN",
+      "subtitle": "Enter your 4-digit PIN",
+      "error": {
+        "incorrect": "Incorrect PIN",
+        "pinDidNotMatch": "PINs did not match"
+      },
+      "verify": {
+        "title": "Verify PIN",
+        "subtitle": "Enter your PIN to verify your account",
+        "biometrics": {
+          "title": "Confirm your identity"
+        }
+      }
     }
   }
 }

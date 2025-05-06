@@ -8,7 +8,10 @@ export default function RootLayout() {
     <Provider>
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="dark-content" />
-        <Stack />
+        <Stack>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="(screens)" />
+        </Stack>
       </SafeAreaView>
     </Provider>
   );

@@ -28,6 +28,15 @@
         "nameRequired": "Ім'я обов'язкове",
         "passwordRequired": "Пароль обов'язковий"
       }
+    },
+    "pinCode": {
+      "verify": {
+        "title": "Вхід",
+        "subtitle": "Увійдіть до свого акаунту",
+        "biometrics": {
+          "title": "Підтвердіть свою особистість"
+        }
+      }
     }
   }
 }
