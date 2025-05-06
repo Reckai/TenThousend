@@ -30,6 +30,7 @@
       }
     },
     "pinCode": {
+      "submit": "Continue",
       "subtitle": "Enter your 5-digit PIN",
       "error": {
         "incorrect": "Incorrect PIN",

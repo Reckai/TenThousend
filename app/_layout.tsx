@@ -10,7 +10,7 @@ export default function RootLayout() {
         <StatusBar barStyle="dark-content" />
         <Stack>
           <Stack.Screen name="index" />
-          <Stack.Screen name="(screens)" />
+          <Stack.Screen options={{ headerShown: false }} name="(screens)" />
         </Stack>
       </SafeAreaView>
     </Provider>

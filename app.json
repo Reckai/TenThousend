@@ -25,6 +25,13 @@
     },
     "plugins": [
       "expo-localization",
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "Allow BlockChainApp to access your Face ID biometric data."
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",

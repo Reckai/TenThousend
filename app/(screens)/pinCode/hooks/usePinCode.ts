@@ -1,13 +1,12 @@
 import { verify } from "@/app/redux/slices/verify.slice";
+import * as SecureStore from 'expo-secure-store';
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert } from "react-native";
 import ReactNativeBiometrics from "react-native-biometrics";
-import Keychain from "react-native-keychain";
 import { useDispatch } from "react-redux";
 import { PIN_CODE_LENGTH, PIN_CODE_SERVICE, STEPS } from "../_consts";
 import { StepType } from "../_types";
-
 interface PinCodeState {
   pinCode: string;
   step: StepType;
@@ -64,9 +63,7 @@ export const usePinCode = (): PinCodeHookResult => {
 
     const checkExistingPin = async () => {
       try {
-        const existedPin = await Keychain.getGenericPassword({
-          service: PIN_CODE_SERVICE,
-        });
+        const existedPin = await SecureStore.getItemAsync(PIN_CODE_SERVICE);
 
         if (existedPin) {
           await verifyPin();
@@ -90,11 +87,9 @@ export const usePinCode = (): PinCodeHookResult => {
 
   const handleVerify = useCallback(async () => {
     try {
-      const existedPin = await Keychain.getGenericPassword({
-        service: PIN_CODE_SERVICE,
-      });
+      const existedPin = await SecureStore.getItemAsync(PIN_CODE_SERVICE);
 
-      if (existedPin && existedPin.password === pinCode) {
+      if (existedPin && existedPin === pinCode) {
         dispatch(verify());
         console.log("PIN verified successfully");
       } else {
@@ -117,9 +112,7 @@ export const usePinCode = (): PinCodeHookResult => {
   const handleConfirm = useCallback(async () => {
     try {
       if (pinCode === secondPinCode) {
-        await Keychain.setGenericPassword(PIN_CODE_SERVICE, pinCode, {
-          service: PIN_CODE_SERVICE,
-        });
+        await SecureStore.setItemAsync(PIN_CODE_SERVICE, pinCode);
 
         dispatch(verify());
         console.log("PIN created successfully");

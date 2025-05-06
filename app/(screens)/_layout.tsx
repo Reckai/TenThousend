@@ -1,22 +1,15 @@
 import { Stack } from "expo-router";
-import { StatusBar } from "react-native";
+import { Colors } from "../utils/colors";
 
 export default function HomeLayout() {
   return (
     <Stack
       screenOptions={{
-        headerStyle: {
-          backgroundColor: "#f4511e",
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
+        headerShown: false,
+        contentStyle: {
+          backgroundColor: Colors.white,
         },
       }}
-    >
-      <StatusBar barStyle="dark-content" />
-
-      <Stack.Screen name="PinCode" />
-    </Stack>
+    />
   );
 }
