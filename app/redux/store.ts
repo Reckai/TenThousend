@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import persistStore from "redux-persist/es/persistStore";
 import authReducer from "./slices/auth.slice";
+import verifyReducer from "./slices/verify.slice";
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
@@ -15,8 +16,7 @@ const rootReducer = persistReducer(
   persistConfig,
   combineReducers({
     auth: authReducer,
-
-    // verify: verifyReducer,
+    verify: verifyReducer,
   }),
 );
 

@@ -1,3 +1,4 @@
+import { verify } from "@/app/redux/slices/verify.slice";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert } from "react-native";
@@ -52,6 +53,7 @@ export const usePinCode = (): PinCodeHookResult => {
 
           if (success) {
             // Implement dispatch logic here instead of throwing error
+            dispatch(verify());
             console.log("Biometric verification successful");
           }
         } catch (error) {
