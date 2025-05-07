@@ -56,11 +56,12 @@ export const usePinCode = (): PinCodeHookResult => {
             let promptMessage = t("pinCode.verify.biometrics.title");
             if (hasFaceId && !hasFingerprint) {
               promptMessage =
-                t("pinCode.verify.biometrics.faceId.title") ||
+                t("auth.pinCode.verify.biometrics.faceId.title") ||
                 "Authenticate with Face ID";
             } else if (hasFingerprint && !hasFaceId) {
+              console.log(t("auth.pinCode.verify.biometrics.touchId.title"));
               promptMessage =
-                t("pinCode.verify.biometrics.touchId.title") ||
+                t("auth.pinCode.verify.biometrics.touchId.title") ||
                 "Authenticate with Touch ID/Fingerprint";
             }
 
@@ -68,7 +69,7 @@ export const usePinCode = (): PinCodeHookResult => {
               promptMessage,
               disableDeviceFallback: false,
               fallbackLabel:
-                t("pinCode.verify.biometrics.fallback") || "Use PIN",
+                t("auth.pinCode.verify.biometrics.fallback") || "Use PIN",
             });
 
             if (result.success) {
@@ -82,7 +83,7 @@ export const usePinCode = (): PinCodeHookResult => {
               console.log("Authentication cancelled");
             } else if (result.error === "lockout") {
               Alert.alert(
-                t("pinCode.error.tooManyAttempts") ||
+                t("auth.pinCode.error.tooManyAttempts") ||
                   "Too many failed attempts",
               );
             }

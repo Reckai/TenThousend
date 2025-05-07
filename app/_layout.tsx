@@ -40,13 +40,12 @@ export default function RootLayout() {
       );
       if (isAuth) {
         if (isVerified) {
-          // MAKE main screen
-          router.replace("/register");
+          router.replace("/(main)");
         } else {
-          router.replace("/PinCode");
+          router.replace("/(screens)/PinCode");
         }
       } else {
-        router.replace("/");
+        router.replace("/(screens)");
       }
     }, [Token, isVerified, userLocalization]);
     return <Slot />;
@@ -66,6 +65,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginTop: StatusBar.currentHeight,
   },
 });

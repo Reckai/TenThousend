@@ -60,5 +60,8 @@
         }
       }
     }
+  },
+  "profile": {
+    "header": "Your name"
   }
 }

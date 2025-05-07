@@ -1,10 +1,9 @@
-import { Stack, useRouter } from "expo-router";
+import { Stack } from "expo-router";
 import React from "react";
-import Routes from "./routes";
-import { Welcome } from "./screens";
+import Routes from "../routes";
+import { Welcome } from "../screens";
 
 export default function WelcomeRoute() {
-  const router = useRouter();
   return (
     <>
       <Stack.Screen

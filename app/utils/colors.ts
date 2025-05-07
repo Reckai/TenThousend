@@ -5,4 +5,7 @@ export const Colors = {
   grayBlack: "#06070A",
   shadow: "#000",
   orange: "#FA8A34",
+  primaryGray: "#F2F3F5",
+  green: "#00B386",
+  gray: "#636363",
 } as const;

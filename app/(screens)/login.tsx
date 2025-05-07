@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import React from "react";
-import Routes from "./routes";
-import Login from "./screens/login/login";
+import Routes from "../routes";
+import Login from "../screens/login/login";
 
 export default function LoginRoute() {
   return (
