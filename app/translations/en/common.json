@@ -61,6 +61,10 @@
       }
     }
   },
+  "post": {
+    "About": "About",
+    "Comments": "Comments"
+  },
   "profile": {
     "header": "Your name"
   }

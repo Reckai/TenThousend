@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { TPost } from "../api/axios/posts/types/Post";
 import { Colors } from "../utils/colors";
@@ -10,12 +11,20 @@ const Posts = ({ posts }: PostsProps) => {
   return (
     <ScrollView style={styles.postsContainer}>
       {posts.map((post) => (
-        <View key={post.id} style={styles.blockContainer}>
-          <View style={styles.textContainer}>
-            <Text style={styles.TitleText}>{post.title}</Text>
-            <Text style={styles.descriptionText}>{post.body}</Text>
+        <Link
+          href={{
+            pathname: "/(main)/post/[id]",
+            params: { id: post.id },
+          }}
+          key={post.id}
+        >
+          <View style={styles.blockContainer}>
+            <View style={styles.textContainer}>
+              <Text style={styles.TitleText}>{post.title}</Text>
+              <Text style={styles.descriptionText}>{post.body}</Text>
+            </View>
           </View>
-        </View>
+        </Link>
       ))}
     </ScrollView>
   );

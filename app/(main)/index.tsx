@@ -1,75 +1,54 @@
-import { TPost } from "@/app/api/axios/posts/types/Post";
+import MainHeader from "@/app/(main)/components/MainHeader";
 import { RootState } from "@/app/redux/store";
 import { Colors } from "@/app/utils/colors";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { useSelector } from "react-redux";
-
-interface PostsProps {
-  posts: TPost[];
-}
-
-const Posts = ({ posts }: PostsProps) => {
-  return (
-    <ScrollView style={styles.postsContainer}>
-      {posts.map((post) => (
-        <View key={post.id} style={styles.blockContainer}>
-          <View style={styles.personalAdviserContainer}>
-            <View style={styles.personalAdviserTextContainer}>
-              <Text style={styles.TitleText}>{post.title}</Text>
-              <Text style={styles.descriptionText}>{post.body}</Text>
-            </View>
-          </View>
-        </View>
-      ))}
-    </ScrollView>
-  );
-};
+import { getPosts } from "../api/axios/posts/requests/getPosts";
+import { TPost } from "../api/axios/posts/types/Post";
+import Loader from "../components/Loader";
+import Posts from "../components/PostsList";
 
 const Main = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const { t } = useTranslation();
+  const { height } = useWindowDimensions();
 
-  // Example posts data - replace this with your actual data
-  const posts: TPost[] = [
-    {
-      id: 1,
-      userid: 1,
-      title: "First Post",
-      body: "This is the content of the first post",
-    },
-    {
-      id: 2,
-      userid: 1,
-      title: "Second Post",
-      body: "This is the content of the second post",
-    },
-    {
-      id: 3,
-      userid: 1,
-      title: "Third Post",
-      body: "This is the content of the third post",
-    },
-    {
-      id: 4,
-      userid: 1,
-      title: "Fourth Post",
-      body: "This is the content of the fourth post",
-    },
-  ];
+  const { data, isLoading, isError } = useQuery<TPost[]>({
+    queryFn: () => getPosts(),
+    queryKey: ["homePosts"],
+  });
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return;
+  }
+  const posts = data?.slice(0, 3) as TPost[];
   return (
     <View style={{ flex: 1, backgroundColor: Colors.primaryGray }}>
-      <View style={styles.header}>
+      <MainHeader
+        backgroundColor={Colors.orange}
+        style={{ height: height * 0.25 }}
+      >
         <Text style={[styles.headerText, { fontSize: 13 }]}>
           {t("profile.header")}
         </Text>
         <Text style={styles.headerText}>
           {user?.firstName ? `${user?.firstName} ${user?.lastName}` : ""}
         </Text>
-      </View>
+      </MainHeader>
 
       <View style={styles.container}>
         <View style={styles.blockContainer}>
@@ -147,8 +126,14 @@ const Main = () => {
         </View>
       </View>
 
-      <View style={styles.container}>
-        <Posts posts={posts} />
+      <View style={[styles.container, { marginTop: 20 }]}>
+        {isLoading ? (
+          <Loader />
+        ) : data ? (
+          <Posts posts={posts} />
+        ) : (
+          <Text>No posts</Text>
+        )}
       </View>
     </View>
   );
