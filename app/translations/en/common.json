@@ -61,6 +61,11 @@
       }
     }
   },
+  "search": {
+    "title": "Search",
+    "noResults": "No results found",
+    "placeholder": "Search Posts..."
+  },
   "profile": {
     "title": "Settings",
     "other": "Other",

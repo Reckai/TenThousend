@@ -1,13 +1,15 @@
 import { Colors } from "@/app/utils/colors";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { Tabs } from "expo-router";
+import { Tabs, usePathname } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 
 export default function TabLayout() {
   const { t } = useTranslation();
+  const pathname = usePathname();
+
   return (
     <Tabs
       screenOptions={({ route }) => ({
@@ -41,7 +43,9 @@ export default function TabLayout() {
           } else if (route.name === "search") {
             icon = <Ionicons name="search" size={28} color={color} />;
           } else if (route.name === "profile") {
-            icon = (
+            icon = pathname.includes("/language") ? (
+              <AntDesign name="setting" size={28} color={Colors.orange} />
+            ) : (
               <AntDesign
                 name="user"
                 size={28}

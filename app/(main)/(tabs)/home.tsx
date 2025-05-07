@@ -24,7 +24,7 @@ const Main = () => {
   const { t } = useTranslation();
   const { height } = useWindowDimensions();
 
-  const { data, isLoading, isError } = useQuery<TPost[]>({
+  const { data, isLoading, isError } = useQuery({
     queryFn: () => getPosts(),
     queryKey: ["homePosts"],
   });
