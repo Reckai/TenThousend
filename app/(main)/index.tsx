@@ -43,7 +43,7 @@ const Main = () => {
         style={{ height: height * 0.25 }}
       >
         <Text style={[styles.headerText, { fontSize: 13 }]}>
-          {t("profile.header")}
+          {t("home.header")}
         </Text>
         <Text style={styles.headerText}>
           {user?.firstName ? `${user?.firstName} ${user?.lastName}` : ""}

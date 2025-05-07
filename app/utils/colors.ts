@@ -7,5 +7,6 @@ export const Colors = {
   orange: "#FA8A34",
   primaryGray: "#F2F3F5",
   green: "#00B386",
+  secondaryGray: "#CED5E0",
   gray: "#636363",
 } as const;

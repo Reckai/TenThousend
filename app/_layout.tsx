@@ -1,11 +1,17 @@
-import { Slot, SplashScreen, useRouter } from "expo-router";
+import { Slot, useRouter } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { changeLanguage } from "i18next";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import { Provider } from "./providers/provider";
 import { RootState } from "./redux/store";
+SplashScreen.preventAutoHideAsync();
 
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
 export default function RootLayout() {
   const router = useRouter();
   const [isAppReady, setIsAppReady] = useState(false);
@@ -17,19 +23,8 @@ export default function RootLayout() {
     const isVerified = useSelector(
       (state: RootState) => state.verify.isVerified,
     );
-    useEffect(() => {
-      const initAndNavigate = async () => {
-        await SplashScreen.hideAsync();
-        setIsAppReady(true);
-      };
-      initAndNavigate();
-    });
 
     useEffect(() => {
-      if (!isAppReady) {
-        return;
-      }
-
       if (userLocalization) {
         changeLanguage(userLocalization);
       }
@@ -51,9 +46,30 @@ export default function RootLayout() {
     return <Slot />;
   };
 
+  useEffect(() => {
+    async function prepare() {
+      try {
+        setIsAppReady(true);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+
+    prepare();
+  }, []);
+  const onLayoutRootView = useCallback(() => {
+    if (isAppReady) {
+      SplashScreen.hide();
+    }
+  }, [isAppReady]);
+
+  if (!isAppReady) {
+    return null;
+  }
+
   return (
     <Provider>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView onLayout={onLayoutRootView} style={styles.container}>
         <StatusBar barStyle="dark-content" />
         <InnerApp />
       </SafeAreaView>

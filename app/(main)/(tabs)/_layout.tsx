@@ -70,26 +70,25 @@ export default function TabLayout() {
       })}
     >
       <Tabs.Screen
-        name="home" // Должен совпадать с именем файла home.js
+        name="home"
         options={{
           title: t("tabs.home"),
-          // headerShown: false, // Если для этого таба не нужен хедер
         }}
       />
       <Tabs.Screen
-        name="portfolio" // Должен совпадать с именем файла settings.js
+        name="portfolio"
         options={{
           title: t("tabs.portfolio"),
         }}
       />
       <Tabs.Screen
-        name="search" // Должен совпадать с именем файла search.js
+        name="search"
         options={{
           title: t("tabs.search"),
         }}
       />
       <Tabs.Screen
-        name="profile" // Должен совпадать с именем файла profile.js
+        name="profile"
         options={{
           title: t("tabs.profile"),
         }}

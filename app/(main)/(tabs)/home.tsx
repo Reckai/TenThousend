@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   useWindowDimensions,
@@ -43,98 +44,94 @@ const Main = () => {
         style={{ height: height * 0.25 }}
       >
         <Text style={[styles.headerText, { fontSize: 13 }]}>
-          {t("profile.header")}
+          {t("home.header")}
         </Text>
         <Text style={styles.headerText}>
           {user?.firstName ? `${user?.firstName} ${user?.lastName}` : ""}
         </Text>
       </MainHeader>
 
-      <View style={styles.container}>
-        <View style={styles.blockContainer}>
-          <View style={styles.personalAdviserContainer}>
-            <View style={styles.personalAdviserTextContainer}>
-              <Text style={styles.TitleText}>Test Task</Text>
-              <Text style={styles.descriptionText}>lorem ipsum</Text>
-              <View style={styles.goToCallRow}>
-                <Text style={styles.goToCallText}>Go to call</Text>
-                <AntDesign
-                  name="right"
-                  size={18}
-                  color={Colors.green}
-                  style={{ marginLeft: 4 }}
-                />
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 32 }}>
+        <View style={styles.container}>
+          <View style={styles.blockContainer}>
+            <View style={styles.personalAdviserContainer}>
+              <View style={styles.personalAdviserTextContainer}>
+                <Text style={styles.TitleText}>Test Task</Text>
+                <Text style={styles.descriptionText}>lorem ipsum</Text>
+                <View style={styles.goToCallRow}>
+                  <Text style={styles.goToCallText}>Go to call</Text>
+                  <AntDesign
+                    name="right"
+                    size={18}
+                    color={Colors.green}
+                    style={{ marginLeft: 4 }}
+                  />
+                </View>
               </View>
+              <Image source={require("@/assets/images/personalAdviser.png")} />
             </View>
-            <Image source={require("@/assets/images/personalAdviser.png")} />
-          </View>
-        </View>
-
-        <View
-          style={[
-            styles.blockContainer,
-            { backgroundColor: Colors.gray, padding: 20, width: "65%" },
-          ]}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 15,
-              flex: 1,
-            }}
-          >
-            <View
-              style={{
-                height: 48,
-                width: 48,
-                backgroundColor: Colors.orange,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 50,
-                flexShrink: 0,
-              }}
-            >
-              <Ionicons name="link-outline" size={24} color="white" />
-            </View>
-            <Text
-              style={[
-                styles.beforeWeStartTextContainer,
-                styles.TitleText,
-                { flex: 1 },
-              ]}
-              numberOfLines={2}
-              ellipsizeMode="tail"
-            >
-              Link yor Bank Account
-            </Text>
           </View>
 
           <View
             style={[
-              {
-                marginTop: 10,
-                width: "100%",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              },
+              styles.blockContainer,
+              { backgroundColor: Colors.gray, padding: 20, width: "65%" },
             ]}
           >
-            <Text style={styles.beforeWeStartTextContainer}>2 step</Text>
-            <AntDesign name="arrowright" size={24} color={Colors.white} />
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 15,
+                flex: 1,
+              }}
+            >
+              <View
+                style={{
+                  height: 48,
+                  width: 48,
+                  backgroundColor: Colors.orange,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: 50,
+                  flexShrink: 0,
+                }}
+              >
+                <Ionicons name="link-outline" size={24} color="white" />
+              </View>
+              <Text
+                style={[
+                  styles.beforeWeStartTextContainer,
+                  styles.TitleText,
+                  { flex: 1 },
+                ]}
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Link yor Bank Account
+              </Text>
+            </View>
+
+            <View
+              style={[
+                {
+                  marginTop: 10,
+                  width: "100%",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                },
+              ]}
+            >
+              <Text style={styles.beforeWeStartTextContainer}>2 step</Text>
+              <AntDesign name="arrowright" size={24} color={Colors.white} />
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={[styles.container, { marginTop: 20 }]}>
-        {isLoading ? (
-          <Loader />
-        ) : data ? (
+        <View style={{ marginTop: 20 }}>
           <Posts posts={posts} />
-        ) : (
-          <Text>No posts</Text>
-        )}
-      </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };

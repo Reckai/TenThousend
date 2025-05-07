@@ -4,7 +4,7 @@
     "slug": "twa",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/iconx64.png",
     "scheme": "twa",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

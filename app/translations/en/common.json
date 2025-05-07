@@ -61,6 +61,11 @@
       }
     }
   },
+  "profile": {
+    "title": "Settings",
+    "other": "Other",
+    "logout": "Logout"
+  },
   "tabs": {
     "home": "Home",
     "portfolio": "Portfolio",
@@ -71,7 +76,7 @@
     "About": "About",
     "Comments": "Comments"
   },
-  "profile": {
+  "home": {
     "header": "Your name"
   }
 }
