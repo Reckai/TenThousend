@@ -61,6 +61,12 @@
       }
     }
   },
+  "tabs": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "profile": "Profile",
+    "search": "Search"
+  },
   "post": {
     "About": "About",
     "Comments": "Comments"

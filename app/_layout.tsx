@@ -40,7 +40,7 @@ export default function RootLayout() {
       );
       if (isAuth) {
         if (isVerified) {
-          router.replace("/(main)");
+          router.replace("/(main)/(tabs)/home");
         } else {
           router.replace("/(screens)/PinCode");
         }

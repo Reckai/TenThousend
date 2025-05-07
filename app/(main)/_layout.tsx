@@ -12,7 +12,7 @@ export default function MainLayout() {
         },
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Home" }} />
+      <Stack.Screen name="(tabs)" options={{ title: "Home" }} />
     </Stack>
   );
 }
