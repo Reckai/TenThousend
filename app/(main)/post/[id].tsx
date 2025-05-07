@@ -2,6 +2,7 @@ import { getComments } from "@/app/api/axios/posts/requests/[id]/comments";
 import { getPost } from "@/app/api/axios/posts/requests/[id]/post";
 import { TComment } from "@/app/api/axios/posts/types/Comments";
 import { TPost } from "@/app/api/axios/posts/types/Post";
+import Button from "@/app/components/Button";
 import Loader from "@/app/components/Loader";
 import { Colors } from "@/app/utils/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -110,10 +111,21 @@ const Post = () => {
                 >
                   {t("post.Comments")}
                 </Text>
-                <Comments comments={comments || []} />
+                <Comments
+                  isLoading={isCommentsLoading}
+                  isError={isCommentsError}
+                  comments={comments || []}
+                />
               </View>
             </View>
           </ScrollView>
+          <View style={styles.footerContainer}>
+            <Button
+              title="Back"
+              backgroundColor={Colors.orange}
+              onPress={() => navigation.goBack()}
+            />
+          </View>
         </View>
       )}
     </View>
@@ -124,6 +136,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.primaryGray,
+  },
+  footerContainer: {
+    alignItems: "center",
+    marginBottom: 20,
   },
   mainContainer: {
     flex: 1,
