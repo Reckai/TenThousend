@@ -1,11 +1,11 @@
 import { getLocales } from "expo-localization";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+import ar from "./ar/common.json";
 import en from "./en/common.json";
-import uk from "./uk/common.json";
 
 const deviceLanguage = getLocales()[0]?.languageCode || "en";
-const supportedLanguage = ["en", "uk"].includes(deviceLanguage)
+const supportedLanguage = ["en", "ar"].includes(deviceLanguage)
   ? deviceLanguage
   : "en";
 
@@ -23,8 +23,8 @@ const resources = {
   en: {
     translation: en,
   },
-  uk: {
-    translation: uk,
+  ar: {
+    translation: ar,
   },
 };
 

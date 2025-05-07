@@ -1,0 +1,82 @@
+{
+  "auth": {
+    "signUp": {
+      "title": "تسجيل",
+      "subtitle": "إنشاء حساب جديد",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "submitButton": "تسجيل",
+      "validation": {
+        "nameRequired": "الاسم مطلوب",
+        "invalidEmail": "بريد إلكتروني غير صالح",
+        "passwordMinLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+        "passwordMaxLength": "يجب ألا تتجاوز كلمة المرور 64 حرفًا",
+        "passwordUppercase": "يجب أن تتضمن كلمة المرور حرفًا كبيرًا واحدًا على الأقل",
+        "passwordLowercase": "يجب أن تتضمن كلمة المرور حرفًا صغيرًا واحدًا على الأقل",
+        "passwordNumber": "يجب أن تتضمن كلمة المرور رقمًا واحدًا على الأقل",
+        "passwordSpecial": "يجب أن تتضمن كلمة المرور حرفًا خاصًا واحدًا على الأقل"
+      }
+    },
+    "signIn": {
+      "title": "تسجيل الدخول",
+      "subtitle": "تسجيل الدخول إلى حسابك",
+      "name": "الاسم",
+      "password": "كلمة المرور",
+      "submitButton": "تسجيل الدخول",
+      "validation": {
+        "nameRequired": "الاسم مطلوب",
+        "passwordRequired": "كلمة المرور مطلوبة"
+      }
+    },
+    "pinCode": {
+      "submit": "متابعة",
+      "subtitle": "أدخل رقم التعريف الشخصي المكون من 5 أرقام",
+      "error": {
+        "incorrect": "رقم التعريف الشخصي غير صحيح",
+        "pinDidNotMatch": "أرقام التعريف الشخصي غير متطابقة",
+        "tooManyAttempts": "محاولات فاشلة كثيرة جدًا",
+        "verificationFailed": "فشل التحقق",
+        "savingFailed": "فشل الحفظ"
+      },
+      "create": {
+        "title": "إنشاء رقم التعريف الشخصي"
+      },
+      "confirm": {
+        "title": "كرر رقم التعريف الشخصي"
+      },
+      "verify": {
+        "title": "أدخل رقم التعريف الشخصي",
+        "biometrics": {
+          "title": "تأكيد هويتك",
+          "faceId": {
+            "title": "المصادقة باستخدام Face ID"
+          },
+          "touchId": {
+            "title": "المصادقة باستخدام Touch ID/بصمة الإصبع"
+          },
+          "fallback": "استخدام رقم التعريف الشخصي"
+        }
+      }
+    }
+  },
+  "profile": {
+    "title": "الإعدادات",
+    "other": "أخرى",
+    "logout": "تسجيل الخروج",
+    "language": "اللغة"
+  },
+  "tabs": {
+    "home": "الرئيسية",
+    "portfolio": "المحفظة",
+    "profile": "الملف الشخصي",
+    "search": "بحث"
+  },
+  "post": {
+    "About": "حول",
+    "Comments": "التعليقات"
+  },
+  "home": {
+    "header": "اسمك"
+  }
+}

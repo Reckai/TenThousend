@@ -64,7 +64,8 @@
   "profile": {
     "title": "Settings",
     "other": "Other",
-    "logout": "Logout"
+    "logout": "Logout",
+    "language": "Language"
   },
   "tabs": {
     "home": "Home",

@@ -1,36 +1,19 @@
+import SettingsItem from "@/app/components/SettingsItem";
 import { logOut } from "@/app/redux/slices";
+import { unVerify } from "@/app/redux/slices/verify.slice";
 import { RootState } from "@/app/redux/store";
 import { User } from "@/app/types/user";
 import { Colors } from "@/app/utils/colors";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, Fontisto } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 // we have 2 choices:
 // we can take user info in the component or pass it from the parent
 // we don`t know will be this component re-used in the future or not
 // so i will pass user info from the parent
-
-const SettingsItem = ({
-  title,
-  children,
-  onPress,
-}: {
-  title: string;
-  children: React.ReactNode;
-  onPress: () => void;
-}) => {
-  return (
-    <View style={{ marginTop: 32 }}>
-      <Text style={styles.itemTitle}>{title}</Text>
-      <TouchableOpacity onPress={onPress}>
-        <View style={styles.itemContent}>{children}</View>
-      </TouchableOpacity>
-    </View>
-  );
-};
 
 const UserInfo = ({ image, firstName, lastName }: User) => {
   return (
@@ -48,6 +31,23 @@ const UserInfo = ({ image, firstName, lastName }: User) => {
   );
 };
 
+const LanguageButton = () => {
+  const { t } = useTranslation();
+  return (
+    <SettingsItem
+      title={t("profile.other")}
+      onPress={() => {
+        router.push("/profile/language");
+      }}
+    >
+      <View style={styles.itemContainer}>
+        <Fontisto name="world-o" size={24} color={Colors.orange} />
+        <Text>{t("profile.language")}</Text>
+      </View>
+    </SettingsItem>
+  );
+};
+
 const LogoutButton = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -56,8 +56,14 @@ const LogoutButton = () => {
     return;
   }
   return (
-    <SettingsItem title={t("profile.other")} onPress={() => dispatch(logOut())}>
-      <View style={[styles.itemContainer, { marginTop: 0, padding: 16 }]}>
+    <SettingsItem
+      title={t("profile.other")}
+      onPress={() => {
+        dispatch(logOut());
+        dispatch(unVerify());
+      }}
+    >
+      <View style={[styles.itemContainer]}>
         <Feather name="log-out" size={24} color={Colors.orange} />
         <Text>{t("profile.logout")}</Text>
       </View>
@@ -83,6 +89,7 @@ const Profile = () => {
       />
       <Text style={styles.title}>{t("profile.title")}</Text>
       <UserInfo {...user} />
+      <LanguageButton />
       <LogoutButton />
     </View>
   );
@@ -113,11 +120,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   itemContainer: {
-    marginTop: 20,
-    borderWidth: 1,
-    borderColor: Colors.secondaryGray,
-    borderRadius: 10,
-    padding: 10,
+    marginTop: 0,
+    padding: 16,
     flexDirection: "row",
     alignItems: "center",
     gap: 10,

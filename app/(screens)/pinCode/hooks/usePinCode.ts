@@ -148,6 +148,8 @@ export const usePinCode = (): PinCodeHookResult => {
 
   const handleConfirm = useCallback(async () => {
     try {
+      console.log("pinCode", pinCode);
+      console.log("secondPinCode", secondPinCode);
       if (pinCode === secondPinCode) {
         await SecureStore.setItemAsync(PIN_CODE_SERVICE, pinCode);
 
@@ -185,6 +187,7 @@ export const usePinCode = (): PinCodeHookResult => {
   const handleSubmit = useCallback(async () => {
     try {
       if (step === STEPS.VERIFY) {
+        console.log("step verify", step);
         await handleVerify();
       } else if (step === STEPS.CREATE) {
         handleCreate();

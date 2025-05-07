@@ -93,6 +93,13 @@ export default function TabLayout() {
           title: t("tabs.profile"),
         }}
       />
+      <Tabs.Screen
+        name="profile/language"
+        options={{
+          href: null,
+          title: t("tabs.language"),
+        }}
+      />
     </Tabs>
   );
 }
