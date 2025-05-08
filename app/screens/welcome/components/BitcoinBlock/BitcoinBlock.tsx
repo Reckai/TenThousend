@@ -1,3 +1,4 @@
+import { ASSETS } from "@/app/utils/assets";
 import { CommonStyles } from "@/app/utils/styles";
 import { FC } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
@@ -12,7 +13,7 @@ const BitCoinBlock: FC = () => {
         style={styles.image}
         key={`bitCoinBlock`}
         alt={"bitcoinImage"}
-        source={require("@/assets/images/iconx64.png")}
+        source={ASSETS.BTC_ICON}
         resizeMode="cover"
       />
     </View>

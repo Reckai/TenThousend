@@ -4,6 +4,7 @@ import { TPost } from "@/app/api/axios/posts/types/Post";
 import Loader from "@/app/components/Loader";
 import Posts from "@/app/components/PostsList";
 import { RootState } from "@/app/redux/store";
+import { ASSETS } from "@/app/utils/assets";
 import { Colors } from "@/app/utils/colors";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -68,7 +69,10 @@ const Main = () => {
                   />
                 </View>
               </View>
-              <Image source={require("@/assets/images/personalAdviser.png")} />
+              <Image
+                source={ASSETS.PERSONAL_ADVISER_IMAGE}
+                style={{ width: 100, height: 100 }}
+              />
             </View>
           </View>
 

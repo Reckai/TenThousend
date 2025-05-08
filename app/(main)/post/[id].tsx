@@ -4,6 +4,7 @@ import { TComment } from "@/app/api/axios/posts/types/Comments";
 import { TPost } from "@/app/api/axios/posts/types/Post";
 import Button from "@/app/components/Button";
 import Loader from "@/app/components/Loader";
+import { ASSETS } from "@/app/utils/assets";
 import { Colors } from "@/app/utils/colors";
 import { CommonStyles } from "@/app/utils/styles";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -68,7 +69,7 @@ const Post = () => {
               </Text>
               <View style={styles.imageContainer}>
                 <Image
-                  source={require("@/assets/images/recipe.png")}
+                  source={ASSETS.POST_IMAGE}
                   style={styles.image}
                   resizeMode="contain"
                 />
