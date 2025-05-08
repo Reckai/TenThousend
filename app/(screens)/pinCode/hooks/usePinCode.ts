@@ -38,6 +38,7 @@ export const usePinCode = (): PinCodeHookResult => {
 
   useEffect(() => {
     const verifyPin = async () => {
+      console.log("step", step);
       if (step === STEPS.VERIFY) {
         try {
           const hasHardware = await LocalAuthentication.hasHardwareAsync();
@@ -114,7 +115,7 @@ export const usePinCode = (): PinCodeHookResult => {
     };
 
     checkExistingPin();
-  }, [t, dispatch, step]);
+  }, [t, dispatch]);
 
   const resetPinCode = useCallback((newStep: StepType) => {
     setPinCode("");
@@ -157,7 +158,7 @@ export const usePinCode = (): PinCodeHookResult => {
         console.log("PIN created successfully");
         resetPinCode(STEPS.VERIFY);
       } else {
-        Alert.alert(t("pinCode.error.pinDidNotMatch"));
+        Alert.alert(t("auth.pinCode.error.pinDidNotMatch"));
         setPinCode("");
       }
     } catch (error) {
@@ -187,7 +188,6 @@ export const usePinCode = (): PinCodeHookResult => {
   const handleSubmit = useCallback(async () => {
     try {
       if (step === STEPS.VERIFY) {
-        console.log("step verify", step);
         await handleVerify();
       } else if (step === STEPS.CREATE) {
         handleCreate();

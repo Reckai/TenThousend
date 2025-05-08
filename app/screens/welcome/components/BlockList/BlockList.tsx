@@ -1,3 +1,4 @@
+import { CommonStyles } from "@/app/utils/styles";
 import React, { FC } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import BitcoinBlock from "../BitcoinBlock/BitcoinBlock";
@@ -27,7 +28,7 @@ const BlockList: FC<BlockListProps> = ({ cards, handleCardPress }) => {
   });
 
   return (
-    <View style={styles.columnsContainer}>
+    <View style={[CommonStyles.flexRow, CommonStyles.spaceBetween]}>
       <View style={styles.column}>
         <BitcoinBlock />
         {leftColumnCards.map((item, index) => (
@@ -69,10 +70,6 @@ const BlockList: FC<BlockListProps> = ({ cards, handleCardPress }) => {
 };
 
 const styles = StyleSheet.create({
-  columnsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
   column: {
     width: "48%",
   },

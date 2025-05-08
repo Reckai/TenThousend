@@ -3,7 +3,6 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 import { BackButton } from "@/app/components/BackButton";
 import { useTranslation } from "react-i18next";
-import { Colors } from "../../utils/colors";
 import { CommonStyles } from "../../utils/styles";
 import SignInForm from "./SignInForm/SignInForm";
 
@@ -11,12 +10,25 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[CommonStyles.flexContainer, CommonStyles.whiteBackground]}
+    >
       <BackButton />
-      <View style={[styles.content, CommonStyles.mainContainer]}>
-        <Text style={styles.title}>{t("auth.signIn.title")}</Text>
-        <Text style={styles.subtitle}>{t("auth.signIn.subtitle")}</Text>
-        <View style={styles.form}>
+      <View
+        style={[
+          CommonStyles.flexContainer,
+          CommonStyles.paddingHorizontal,
+          CommonStyles.mainContainer,
+          styles.contentWrapper,
+        ]}
+      >
+        <Text style={[CommonStyles.title, styles.title]}>
+          {t("auth.signIn.title")}
+        </Text>
+        <Text style={[CommonStyles.subtitle, styles.subtitleMargin]}>
+          {t("auth.signIn.subtitle")}
+        </Text>
+        <View style={[CommonStyles.flexContainer, styles.formMargin]}>
           <SignInForm />
         </View>
       </View>
@@ -25,30 +37,19 @@ const Login: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
-
-  content: {
-    flex: 1,
+  contentWrapper: {
     marginTop: 50,
-    paddingHorizontal: 20,
     paddingBottom: 30,
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
     marginBottom: 10,
   },
-  subtitle: {
-    fontSize: 16,
-    color: "#666",
+  subtitleMargin: {
     marginBottom: 30,
   },
-  form: {
+  formMargin: {
     marginBottom: 30,
-    flex: 1,
   },
 });
 

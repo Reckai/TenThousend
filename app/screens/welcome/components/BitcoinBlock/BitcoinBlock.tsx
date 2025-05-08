@@ -1,3 +1,4 @@
+import { CommonStyles } from "@/app/utils/styles";
 import { FC } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 
@@ -6,7 +7,7 @@ const blockSize = (screenWidth - 48) / 2;
 
 const BitCoinBlock: FC = () => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, CommonStyles.marginBottom]}>
       <Image
         style={styles.image}
         key={`bitCoinBlock`}
@@ -24,7 +25,6 @@ const styles = StyleSheet.create({
     height: blockSize,
     borderRadius: 12,
     overflow: "hidden",
-    marginBottom: 16,
   },
   image: {
     width: "100%",

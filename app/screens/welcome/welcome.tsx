@@ -12,9 +12,17 @@ const Welcome: React.FC = () => {
   const { data, functions } = useBlocks();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={[styles.container, CommonStyles.mainContainer]}>
-        <View style={styles.content}>
+    <SafeAreaView
+      style={[CommonStyles.flexContainer, CommonStyles.whiteBackground]}
+    >
+      <View
+        style={[
+          CommonStyles.flexContainer,
+          CommonStyles.mainContainer,
+          styles.topMargin,
+        ]}
+      >
+        <View style={[CommonStyles.flexContainer, styles.paddingTop]}>
           {
             <BlockList
               cards={data.cards}
@@ -23,7 +31,7 @@ const Welcome: React.FC = () => {
           }
         </View>
 
-        <View style={styles.buttonContainer}>
+        <View style={[styles.buttonContainer, CommonStyles.centerContent]}>
           <Button
             title={t("auth.signIn.submitButton")}
             onPress={functions.handleLogin}
@@ -40,17 +48,11 @@ const Welcome: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: Colors.white,
-  },
-  container: {
-    flex: 1,
+  topMargin: {
     marginTop: 50,
     paddingBottom: 80,
   },
-  content: {
-    flex: 1,
+  paddingTop: {
     paddingTop: 20,
   },
   buttonContainer: {
@@ -58,30 +60,6 @@ const styles = StyleSheet.create({
     bottom: 30,
     left: -20,
     right: -20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  modalTitle: {
-    fontSize: 22,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 15,
-  },
-  columnsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  column: {
-    width: "48%",
-  },
-  cardGap: {
-    height: 16,
   },
 });
 

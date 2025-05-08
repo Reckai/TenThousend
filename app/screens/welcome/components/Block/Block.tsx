@@ -1,3 +1,4 @@
+import { CommonStyles } from "@/app/utils/styles";
 import { FC } from "react";
 import {
   Dimensions,
@@ -19,9 +20,21 @@ interface BlockProps extends CardItem {
 
 const Block: FC<BlockProps> = ({ images, label }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        <View style={styles.rowContainer}>
+    <View style={[styles.container, CommonStyles.marginBottom]}>
+      <View
+        style={[
+          CommonStyles.flexContainer,
+          CommonStyles.centerContent,
+          CommonStyles.smallGap,
+        ]}
+      >
+        <View
+          style={[
+            CommonStyles.flexRow,
+            CommonStyles.centerContent,
+            styles.rowContainer,
+          ]}
+        >
           {images.map((image, index) => (
             <Image
               key={index}
@@ -31,7 +44,11 @@ const Block: FC<BlockProps> = ({ images, label }) => {
             />
           ))}
         </View>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+        <Text
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          style={[CommonStyles.description, CommonStyles.boldText]}
+        >
           {label}
         </Text>
       </View>
@@ -51,17 +68,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
-    marginBottom: 12,
-  },
-  contentContainer: {
-    flex: 1,
-    justifyContent: "center",
-    gap: 8,
   },
   rowContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
     position: "relative",
     height: blockHeight * 0.5,
     gap: 20,
@@ -76,11 +84,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 2,
     transform: [{ scale: 1.1 }],
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: "600",
-    textAlign: "center",
   },
 });
 

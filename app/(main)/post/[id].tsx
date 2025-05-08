@@ -5,6 +5,7 @@ import { TPost } from "@/app/api/axios/posts/types/Post";
 import Button from "@/app/components/Button";
 import Loader from "@/app/components/Loader";
 import { Colors } from "@/app/utils/colors";
+import { CommonStyles } from "@/app/utils/styles";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -79,7 +80,7 @@ const Post = () => {
             style={styles.scrollView}
             showsVerticalScrollIndicator={false}
           >
-            <View style={styles.contentContainer}>
+            <View style={[styles.contentContainer, CommonStyles.mainContainer]}>
               <Text
                 style={[styles.description, { color: `${Colors.grayBlack}40` }]}
               >
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    marginTop: 20,
+
     padding: 20,
   },
   content: {

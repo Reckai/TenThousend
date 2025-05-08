@@ -7,6 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { Colors } from "../utils/colors";
+import { CommonStyles } from "../utils/styles";
 
 type ButtonProps = TouchableOpacityProps & {
   title: string;
@@ -31,32 +32,27 @@ const Button: FC<ButtonProps> = ({
     <TouchableOpacity
       {...rest}
       onPress={onPress}
-      style={[styles.button, { backgroundColor: buttonBackgroundColor }, style]}
+      style={[
+        CommonStyles.button,
+        CommonStyles.centerContent,
+        { backgroundColor: buttonBackgroundColor, width: "90%" },
+        style,
+      ]}
       accessible={true}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel || title}
       accessibilityState={{ disabled: rest.disabled }}
       importantForAccessibility="yes"
     >
-      <Text style={[styles.text, { color: textColor }]}>{title}</Text>
+      <Text style={[CommonStyles.buttonText, { color: textColor }]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    width: "90%",
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    color: Colors.orange,
-    fontSize: 16,
-    fontWeight: "bold",
-  },
+  // Custom styles specific to this component that aren't in CommonStyles
 });
 
 export default Button;
